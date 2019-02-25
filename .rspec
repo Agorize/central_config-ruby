@@ -1,0 +1,3 @@
+--color
+--require support/coverage.rb
+--require spec_helper

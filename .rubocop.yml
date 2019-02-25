@@ -1,0 +1,77 @@
+require:
+  - rubocop-rspec
+
+Rails:
+  Enabled: true
+
+AllCops:
+  TargetRubyVersion: 2.6
+  Exclude:
+    - 'bin/*'
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/BlockEndNewline:
+  Exclude:
+    - spec/**/*
+
+Layout/MultilineBlockLayout:
+  Exclude:
+    - spec/**/*
+
+Layout/MultilineMethodCallBraceLayout:
+  EnforcedStyle: same_line
+
+Layout/SpaceInsideBlockBraces:
+  Exclude:
+    - spec/**/*
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/LineLength:
+  Exclude:
+    - spec/**/*
+  Max: 90
+
+Metrics/ModuleLength:
+  Max: 100
+
+RSpec/ContextWording:
+  Prefixes:
+    - and
+    - if
+    - when
+    - with
+    - without
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/**/*_helper_spec.rb'
+
+RSpec/DescribedClass:
+  Exclude:
+    - 'spec/central_config/version_spec.rb'
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/NestedGroups:
+    Max: 5
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+Style/BlockDelimiters:
+  Exclude:
+    - spec/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Style/Lambda:
+  EnforcedStyle: literal

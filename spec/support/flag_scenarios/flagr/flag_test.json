@@ -1,0 +1,31 @@
+{
+  "evaluationResults": [
+    {
+      "evalContext": {
+        "enableDebug": true,
+        "entityContext": {
+          "hello": "world"
+        },
+        "entityID": "a1234",
+        "entityType": "report",
+        "flagKey": "flag_test"
+      },
+      "evalDebugLog": {
+        "segmentDebugLogs": [
+          {
+            "msg": "matched all constraints. rollout yes. {BucketNum:151 DistributionArray:{VariantIDs:[4] PercentsAccumulated:[1000]} VariantID:4 RolloutPercent:100}",
+            "segmentID": 2
+          }
+        ]
+      },
+      "flagID": 2,
+      "flagKey": "flag_test",
+      "flagSnapshotID": 15,
+      "segmentID": 2,
+      "timestamp": "2019-02-07T12:25:05Z",
+      "variantAttachment": {},
+      "variantID": 4,
+      "variantKey": "on"
+    }
+  ]
+}
