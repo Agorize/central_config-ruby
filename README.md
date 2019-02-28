@@ -23,8 +23,22 @@ And then execute:
 CentralConfig will automatically pickup the following environment variables:
 
 ```
-CENTRAL_CONFIG_HOST="https://flagr.agorize.com"
-CENTRAL_CONFIG_TOKEN="12dsf213dsf54356g5656434"
+CENTRAL_CONFIG_FLAGR_HOST="https://flagr.agorize.com"
+```
+
+You can also override the gem settings in an initializer:
+
+```ruby
+# config/initializers/central_config.rb
+CentralConfig.configure do |config|
+  config.flagr_host = 'https://flagr.agorize.com'
+end
+```
+
+To get the list of configuration options you can generate the initializer by calling:
+
+```
+rails generate central_config:install
 ```
 
 ## Fetching all the flags

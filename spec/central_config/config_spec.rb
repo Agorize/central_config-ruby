@@ -6,6 +6,30 @@ RSpec.describe CentralConfig::Config do
   let(:adapter) { double }
   let(:data) { {} }
 
+  describe '#adapter' do
+    it 'returns the adapter' do
+      expect(subject.adapter).to be(adapter)
+    end
+  end
+
+  describe '#adapter=' do
+    it 'sets the adapter' do
+      new_adapter = double
+      subject.adapter = new_adapter
+
+      expect(subject.adapter).to be new_adapter
+    end
+  end
+
+  describe '#error_handler=/#error_handler' do
+    it 'sets and returns the error_handler' do
+      new_error_handler = double
+      subject.error_handler = new_error_handler
+
+      expect(subject.error_handler).to be new_error_handler
+    end
+  end
+
   describe '#flag?' do
     it 'expects a flag name' do
       error_message = 'wrong number of arguments (given 0, expected 1)'
@@ -74,6 +98,15 @@ RSpec.describe CentralConfig::Config do
     end
   end
 
+  describe '#flagr_host=/#flagr_host' do
+    it 'sets and returns the flagr_host' do
+      new_flagr_host = double
+      subject.flagr_host = new_flagr_host
+
+      expect(subject.flagr_host).to be new_flagr_host
+    end
+  end
+
   describe '#load' do
     let(:call_args) {{
       entity_id: 'id',
@@ -87,7 +120,10 @@ RSpec.describe CentralConfig::Config do
     }}
 
     before do
-      allow(adapter).to receive(:call).with(**call_args).and_return(settings)
+      allow(adapter)
+        .to receive(:call)
+        .with(config: subject, **call_args)
+        .and_return(settings)
     end
 
     it 'expects an :entity_id argument' do

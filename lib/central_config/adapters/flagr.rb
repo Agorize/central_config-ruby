@@ -6,8 +6,8 @@ require 'rbflagr'
 module CentralConfig
   module Adapters
     class Flagr
-      def call(entity_id:, context:, flags:)
-        flags = evaluate_flags(entity_id, context, flags)
+      def call(config:, entity_id:, context:, flags:)
+        flags = evaluate_flags(config, entity_id, context, flags)
 
         flags.each_with_object({}) do |flag, data|
           flag_key = flag[:flagKey]
@@ -23,7 +23,7 @@ module CentralConfig
 
       private
 
-      def evaluate_flags(entity_id, context, flags)
+      def evaluate_flags(config, entity_id, context, flags)
         body = ::Flagr::EvaluationBatchRequest.new(
           entities: [{
             entity_id: entity_id,
@@ -31,13 +31,13 @@ module CentralConfig
           }],
           flagKeys: flags)
 
-        response = evaluation_api.post_evaluation_batch(body)
+        response = evaluation_api(config).post_evaluation_batch(body)
         response.to_body.fetch(:evaluationResults)
       end
 
-      def evaluation_api
+      def evaluation_api(gem_config)
         ::Flagr.configure do |config|
-          config.host = ENV['CENTRAL_CONFIG_HOST']
+          config.host = gem_config.flagr_host
 
           # FIXME: This is ignored by the lib
           # config.api_key['api_key'] = ENV['CENTRAL_CONFIG_TOKEN']

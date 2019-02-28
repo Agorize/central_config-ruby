@@ -5,6 +5,12 @@ RSpec.describe CentralConfig do
 
   before { subject.config = config }
 
+  describe '#configure' do
+    it 'yields the config' do
+      expect { |b| subject.configure(&b) }.to yield_with_args(config)
+    end
+  end
+
   describe '.flag?' do
     let(:config) { instance_double('Config', flag?: 'flag called') }
 

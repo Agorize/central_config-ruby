@@ -19,6 +19,10 @@ module CentralConfig
     def config=(value)
       Thread.current[:central_config] = value
     end
+
+    def configure
+      yield config
+    end
   end
 
   extend Base
