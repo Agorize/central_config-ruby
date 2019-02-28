@@ -67,6 +67,10 @@ RSpec.describe CentralConfig::Config do
         value = subject.flag?(:test, default: 'karg') { 'block' }
         expect(value).to eq 'block'
       end
+
+      it 'yields the flag name to the provided block' do
+        expect { |b| subject.flag?(:unknown, &b) }.to yield_with_args(:unknown)
+      end
     end
   end
 
@@ -191,6 +195,10 @@ RSpec.describe CentralConfig::Config do
         expect(value).to eq 'block'
       end
 
+      it 'yields the setting name to the provided black' do
+        expect { |b| subject.setting(:unknown, &b) }.to yield_with_args(:unknown)
+      end
+
       context 'and a specific item of the setting is requested' do
         it 'returns nil' do
           value = subject.setting(:unknown, :key)
@@ -210,6 +218,11 @@ RSpec.describe CentralConfig::Config do
         it 'returns the default value from the block if both keyword and block are provided' do
           value = subject.setting(:unknown, :unknown, default: 'karg') { 'block' }
           expect(value).to eq 'block'
+        end
+
+        it 'yields the setting and property names to the provided black' do
+          expect { |b| subject.setting(:unknown, :test, &b) }
+            .to yield_with_args(:unknown, :test)
         end
       end
     end

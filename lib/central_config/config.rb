@@ -14,7 +14,7 @@ module CentralConfig
 
       return variant == 'on' if variant.present?
 
-      block_given? ? yield : default
+      block_given? ? yield(flag_name) : default
     end
 
     def load(entity_id:, context:, flags:)
@@ -29,7 +29,7 @@ module CentralConfig
 
       return value unless value.nil?
 
-      block_given? ? yield : default
+      block_given? ? yield(setting_name, *dig_path) : default
     end
 
     private
