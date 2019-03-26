@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'actionpack', '~> 5.1.5'
+  spec.add_development_dependency 'actionpack', '>= 5.1.6.2', '< 5.2'
   spec.add_development_dependency 'bundler', '~> 1.17'
   spec.add_development_dependency 'capybara', '~> 3.13'
   spec.add_development_dependency 'rake', '~> 10.0'
