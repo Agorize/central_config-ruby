@@ -11,7 +11,7 @@ change the code using this gem.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'central_config'
+gem 'central_config', github: 'Agorize/central_config-ruby'
 ```
 
 And then execute:
