@@ -6,8 +6,20 @@ require 'rbflagr'
 module CentralConfig
   module Adapters
     class Flagr
-      def call(config:, entity_id:, context:, flags:)
-        flags = evaluate_flags(config, entity_id, context, flags)
+      def initialize(config:)
+        ::Flagr.configure do |flagr|
+          flagr.host = config.flagr_host.to_s
+
+          # FIXME: This is ignored by the lib
+          # flagr.api_key['api_key'] = ENV['CENTRAL_CONFIG_TOKEN']
+        end
+
+        @evaluation_api = ::Flagr::EvaluationApi.new
+        @flag_api = ::Flagr::FlagApi.new
+      end
+
+      def call(entity_id:, context:, flags: enabled_flags)
+        flags = evaluate_flags(entity_id, context, flags)
 
         flags.each_with_object({}) do |flag, data|
           flag_key = flag[:flagKey]
@@ -23,7 +35,11 @@ module CentralConfig
 
       private
 
-      def evaluate_flags(config, entity_id, context, flags)
+      def enabled_flags
+        flag_api.find_flags(enabled: true).map(&:key)
+      end
+
+      def evaluate_flags(entity_id, context, flags)
         body = ::Flagr::EvaluationBatchRequest.new(
           entities: [{
             entity_id: entity_id,
@@ -31,20 +47,11 @@ module CentralConfig
           }],
           flagKeys: flags)
 
-        response = evaluation_api(config).post_evaluation_batch(body)
+        response = evaluation_api.post_evaluation_batch(body)
         response.to_body.fetch(:evaluationResults)
       end
 
-      def evaluation_api(gem_config)
-        ::Flagr.configure do |config|
-          config.host = gem_config.flagr_host
-
-          # FIXME: This is ignored by the lib
-          # config.api_key['api_key'] = ENV['CENTRAL_CONFIG_TOKEN']
-        end
-
-        ::Flagr::EvaluationApi.new
-      end
+      attr_reader :config, :evaluation_api, :flag_api
     end
   end
 end

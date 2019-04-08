@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ENV['CENTRAL_CONFIG_FLAGR_HOST'] = 'flagr.com'
+ENV['CENTRAL_CONFIG_FLAGR_HOST'] = 'flagr.test.com'
 ENV['DATABASE_URL'] ||= 'sqlite3://localhost/:memory:'
 ENV['RAILS_ENV'] = 'test'
 

@@ -42,6 +42,6 @@ class TestingController < ActionController::Base
   ]
 
   before_action do
-    CentralConfig.load(entity_id: '1', context: {}, flags: %w[flag_test setting_test])
+    CentralConfig.load(entity_id: '1', context: {})
   end
 end

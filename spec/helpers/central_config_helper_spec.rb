@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe CentralConfigHelper, :stub_flagr do
   before do
-    CentralConfig.load(entity_id: '1', context: {}, flags: %w[flag_test setting_test])
+    CentralConfig.load(entity_id: '1', context: {})
   end
 
   describe '#central_flag?' do

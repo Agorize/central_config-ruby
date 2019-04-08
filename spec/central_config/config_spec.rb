@@ -110,8 +110,7 @@ RSpec.describe CentralConfig::Config do
   describe '#load' do
     let(:call_args) {{
       entity_id: 'id',
-      context: { 'key' => 'value' },
-      flags: %w[flag_test setting_test]
+      context: { 'key' => 'value' }
     }}
 
     let(:settings) {{
@@ -120,10 +119,7 @@ RSpec.describe CentralConfig::Config do
     }}
 
     before do
-      allow(adapter)
-        .to receive(:call)
-        .with(config: subject, **call_args)
-        .and_return(settings)
+      allow(adapter).to receive(:call).with(**call_args).and_return(settings)
     end
 
     it 'expects an :entity_id argument' do
@@ -134,11 +130,6 @@ RSpec.describe CentralConfig::Config do
     it 'expects a :context argument' do
       expect { subject.load(entity_id: nil, flags: nil) }
         .to raise_exception(ArgumentError, 'missing keyword: context')
-    end
-
-    it 'expects a :flags argument' do
-      expect { subject.load(entity_id: nil, context: nil) }
-        .to raise_exception(ArgumentError, 'missing keyword: flags')
     end
 
     it 'returns the data returned by the adapter' do
@@ -154,7 +145,17 @@ RSpec.describe CentralConfig::Config do
     end
 
     context 'when the adapter fails' do
-      before { allow(adapter).to receive(:call).and_raise }
+      let(:error_handler) { spy('Error Handler') }
+
+      before do
+        subject.error_handler = error_handler
+        allow(adapter).to receive(:call).and_raise
+      end
+
+      it 'calls the exception handler' do
+        subject.load(**call_args)
+        expect(error_handler).to have_received(:call).with(StandardError)
+      end
 
       it 'returns an empty hash' do
         data = subject.load(**call_args)

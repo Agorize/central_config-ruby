@@ -1,14 +1,20 @@
 # frozen_string_literal: true
 
 RSpec.configure do |config|
-  config.before :each, :stub_flagr do
-    stub_request(:post, 'http://flagr.com/api/v1/evaluation/batch').to_return do |request|
-      scenario = JSON.parse(request.body).dig('flagKeys').sort.join('_')
+  config.before :each, :stub_flagr do |example|
+    scenario = example.metadata[:stub_flagr]
+    scenario = :all if scenario.is_a?(TrueClass)
 
-      path = "../../support/flag_scenarios/flagr/#{scenario}.json"
-      flagr_body = File.read(File.expand_path(path, __dir__))
+    scenario_path = "#{__dir__}/../flag_scenarios/flagr/#{scenario}"
 
-      { status: 200, body: flagr_body, headers: {} }
-    end
+    flags_payload = File.read("#{scenario_path}/flags.json")
+    eval_payload = File.read("#{scenario_path}/eval.json")
+    headers = { 'content-type': 'application/json' }
+
+    stub_request(:get, 'http://flagr.test.com/api/v1/flags?enabled=true')
+      .to_return(body: flags_payload, headers: headers)
+
+    stub_request(:post, 'http://flagr.test.com/api/v1/evaluation/batch')
+      .to_return(body: eval_payload, headers: headers)
   end
 end

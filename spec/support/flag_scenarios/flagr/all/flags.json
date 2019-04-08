@@ -1,0 +1,22 @@
+[
+  {
+    "dataRecordsEnabled": false,
+    "variants": [],
+    "key": "flag_test",
+    "segments": [],
+    "description": "Flag: test",
+    "enabled": true,
+    "id": 1,
+    "updatedAt": "2019-02-08T16:39:44.829Z"
+  },
+  {
+    "updatedAt": "2019-02-08T16:35:36.704Z",
+    "description": "Setting: test",
+    "enabled": true,
+    "id": 2,
+    "segments": [],
+    "dataRecordsEnabled": false,
+    "key": "setting_test",
+    "variants": []
+  }
+]

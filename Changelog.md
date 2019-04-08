@@ -1,5 +1,9 @@
 # Changelog
 
+## HEAD
+
+* Loading all enabled flags by default (no need to list them anymore)
+
 ## 0.1.1
 
 * Fixing the initializer generator code to make it actually work
