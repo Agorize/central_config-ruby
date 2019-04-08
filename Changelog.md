@@ -1,8 +1,8 @@
 # Changelog
 
-## HEAD
+## 0.2.0
 
-* Loading all enabled flags by default (no need to list them anymore)
+* BREAKING: Loading all enabled flags by default (no need to list them anymore)
 
 ## 0.1.1
 
