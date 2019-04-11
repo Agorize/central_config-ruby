@@ -5,8 +5,16 @@ require 'rbflagr/api_client'
 module Flagr
   class MonkeyPatchedApiClient < ApiClient
     def build_request(*)
-      @default_headers.merge!(CentralConfig.config.flagr_headers)
-      super
+      config = CentralConfig.config
+      request = super
+
+      request.options[:headers].merge!(config.flagr_headers)
+
+      if config.flagr_basic_auth
+        request.options[:userpwd] = config.flagr_basic_auth
+      end
+
+      request
     end
   end
 

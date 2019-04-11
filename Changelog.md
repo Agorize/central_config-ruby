@@ -4,6 +4,7 @@
 
 * Making sure the adapter is instanciated after the configure block is called
 * Using the scheme from the provided flagr_host when present
+* Allowing authentication through Basic Auth
 
 ## 0.3.0
 

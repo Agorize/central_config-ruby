@@ -63,6 +63,17 @@ CentralConfig.configure do |config|
 end
 ```
 
+### Authentication via HTTP Basic Auth
+
+Sometimes you cannot simply pass an authentication header but you may need to provide
+Basic Auth credentials. You can do so in the configuration:
+
+```ruby
+CentralConfig.configure do |config|
+  config.flagr_basic_auth = 'my-login:my-password'
+end
+```
+
 ## Fetching all the flags
 
 In order to avoid calling Flagr multiple times for a single request, you need to send the

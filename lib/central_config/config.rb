@@ -5,6 +5,7 @@ require 'active_support/core_ext/object/blank'
 module CentralConfig
   class Config
     attr_accessor :error_handler
+    attr_accessor :flagr_basic_auth
     attr_accessor :flagr_headers
     attr_accessor :flagr_host
 
@@ -14,6 +15,7 @@ module CentralConfig
       @adapter = adapter
       @data = data
       @error_handler = method(:error_warning)
+      @flagr_basic_auth = nil
       @flagr_headers = {}
       @flagr_host = ENV['CENTRAL_CONFIG_FLAGR_HOST']
     end
