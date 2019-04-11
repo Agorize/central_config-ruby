@@ -7,8 +7,11 @@ module CentralConfig
   module Adapters
     class Flagr
       def initialize(config:)
+        flagr_host = config.flagr_host.to_s
+
         ::Flagr.configure do |flagr|
-          flagr.host = config.flagr_host.to_s
+          flagr.scheme = flagr_host[/\Ahttps?/] || 'http'
+          flagr.host = flagr_host
         end
 
         @evaluation_api = ::Flagr::EvaluationApi.new
