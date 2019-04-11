@@ -1,5 +1,9 @@
 # Changelog
 
+## HEAD
+
+* Making sure the adapter is instanciated after the configure block is called
+
 ## 0.3.0
 
 * Adding the ability to send custom headers to Flagr backends

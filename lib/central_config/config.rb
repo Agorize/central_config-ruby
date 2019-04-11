@@ -4,15 +4,22 @@ require 'active_support/core_ext/object/blank'
 
 module CentralConfig
   class Config
-    attr_accessor :adapter, :error_handler, :flagr_headers, :flagr_host
+    attr_accessor :error_handler
+    attr_accessor :flagr_headers
+    attr_accessor :flagr_host
+
+    attr_writer :adatper
 
     def initialize(data = {}, adapter: nil)
+      @adapter = adapter
       @data = data
       @error_handler = method(:error_warning)
       @flagr_headers = {}
       @flagr_host = ENV['CENTRAL_CONFIG_FLAGR_HOST']
+    end
 
-      @adapter = adapter || default_adapter
+    def adapter
+      @adapter ||= CentralConfig::Adapters::Flagr.new(config: self)
     end
 
     def flag?(flag_name, default: false)
@@ -39,10 +46,6 @@ module CentralConfig
     end
 
     private
-
-    def default_adapter
-      CentralConfig::Adapters::Flagr.new(config: self)
-    end
 
     def error_warning(exception)
       warn "Returning empty central config due to #{exception.inspect}"
