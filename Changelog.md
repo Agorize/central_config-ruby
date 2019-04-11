@@ -1,6 +1,6 @@
 # Changelog
 
-## HEAD
+## 0.4.0
 
 * Making sure the adapter is instanciated after the configure block is called
 * Using the scheme from the provided flagr_host when present
