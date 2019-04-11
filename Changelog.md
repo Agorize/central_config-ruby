@@ -1,6 +1,6 @@
 # Changelog
 
-## HEAD
+## 0.3.0
 
 * Adding the ability to send custom headers to Flagr backends
 

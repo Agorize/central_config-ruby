@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    central_config (0.2.0)
+    central_config (0.3.0)
       activesupport (~> 5.1)
       rbflagr (~> 0.2.0)
 
