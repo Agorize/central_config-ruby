@@ -41,6 +41,28 @@ To get the list of configuration options you can generate the initializer by cal
 rails generate central_config:install
 ```
 
+## Custom Headers and Authentication
+
+You can provide additional headers for Flagr backends in the ContralConfig settings.
+Those headers will be added to every request sent to your Flagr server.
+
+```ruby
+CentralConfig.configure do |config|
+  config.flagr_headers = { 'X-Custom' => 'Important value' }
+end
+```
+
+### Authentication
+
+You can leverage this to provide custom authentication headers if your Flagr server is
+hidden being an authentication gateway.
+
+```ruby
+CentralConfig.configure do |config|
+  config.flagr_headers = { 'Authorization' => 'Token my-custom-token' }
+end
+```
+
 ## Fetching all the flags
 
 In order to avoid calling Flagr multiple times for a single request, you need to send the

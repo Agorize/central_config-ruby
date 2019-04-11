@@ -1,5 +1,9 @@
 # Changelog
 
+## HEAD
+
+* Adding the ability to send custom headers to Flagr backends
+
 ## 0.2.0
 
 * BREAKING: Loading all enabled flags by default (no need to list them anymore)

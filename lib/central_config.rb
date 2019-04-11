@@ -5,6 +5,9 @@ require 'active_support/core_ext/module/delegation.rb'
 require 'central_config/version'
 require 'central_config/engine' if defined?(Rails)
 
+# FIXME: Waiting for a solution to https://github.com/checkr/rbflagr/issues/6
+require 'rbflagr/monkey_patched_api_client'
+
 module CentralConfig
   autoload :Adapters, 'central_config/adapters'
   autoload :Config, 'central_config/config'

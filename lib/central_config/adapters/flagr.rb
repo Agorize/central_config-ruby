@@ -9,9 +9,6 @@ module CentralConfig
       def initialize(config:)
         ::Flagr.configure do |flagr|
           flagr.host = config.flagr_host.to_s
-
-          # FIXME: This is ignored by the lib
-          # flagr.api_key['api_key'] = ENV['CENTRAL_CONFIG_TOKEN']
         end
 
         @evaluation_api = ::Flagr::EvaluationApi.new

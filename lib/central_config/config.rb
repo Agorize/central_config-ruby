@@ -4,11 +4,12 @@ require 'active_support/core_ext/object/blank'
 
 module CentralConfig
   class Config
-    attr_accessor :adapter, :error_handler, :flagr_host
+    attr_accessor :adapter, :error_handler, :flagr_headers, :flagr_host
 
     def initialize(data = {}, adapter: nil)
       @data = data
       @error_handler = method(:error_warning)
+      @flagr_headers = {}
       @flagr_host = ENV['CENTRAL_CONFIG_FLAGR_HOST']
 
       @adapter = adapter || default_adapter
