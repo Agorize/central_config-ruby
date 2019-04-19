@@ -98,6 +98,24 @@ RSpec.describe CentralConfig::Config do
     end
   end
 
+  describe '#flagr_basic_auth=/#flagr_basic_auth' do
+    it 'sets and returns the flagr_basic_auth' do
+      new_flagr_basic_auth = double
+      subject.flagr_basic_auth = new_flagr_basic_auth
+
+      expect(subject.flagr_basic_auth).to be new_flagr_basic_auth
+    end
+  end
+
+  describe '#flagr_headers=/#flagr_headers' do
+    it 'sets and returns the flagr_headers' do
+      new_flagr_headers = { key: :value }
+      subject.flagr_headers = new_flagr_headers
+
+      expect(subject.flagr_headers).to eq new_flagr_headers
+    end
+  end
+
   describe '#flagr_host=/#flagr_host' do
     it 'sets and returns the flagr_host' do
       new_flagr_host = double
