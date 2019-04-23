@@ -1,6 +1,6 @@
 # Changelog
 
-## HEAD
+## 0.5.0
 
 * Fixing an issue where a new config would not use the configure block
 
