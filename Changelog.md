@@ -1,5 +1,9 @@
 # Changelog
 
+## HEAD
+
+* Fixing an issue where a new config would not use the configure block
+
 ## 0.4.0
 
 * Making sure the adapter is instanciated after the configure block is called

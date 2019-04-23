@@ -6,8 +6,15 @@ RSpec.describe CentralConfig do
   before { subject.config = config }
 
   describe '#configure' do
-    it 'yields the config' do
-      expect { |b| subject.configure(&b) }.to yield_with_args(config)
+    let(:config) { nil }
+
+    it 'sets the block to call to initialize a new config' do
+      expect { |b| subject.configure(&b); subject.config }
+        .to yield_with_args an_instance_of(CentralConfig::Config)
+    end
+
+    it 'does not call the block if no new config is created' do
+      expect { |b| subject.configure(&b) }.not_to yield_control
     end
   end
 

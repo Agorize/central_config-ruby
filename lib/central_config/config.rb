@@ -9,7 +9,7 @@ module CentralConfig
     attr_accessor :flagr_headers
     attr_accessor :flagr_host
 
-    attr_writer :adatper
+    attr_writer :adapter
 
     def initialize(data = {}, adapter: nil)
       @adapter = adapter
