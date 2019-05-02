@@ -42,8 +42,8 @@ module CentralConfig
       def evaluate_flags(entity_id, context, flags)
         body = ::Flagr::EvaluationBatchRequest.new(
           entities: [{
-            entity_id: entity_id,
-            entity_context: context
+            entityId: entity_id,
+            entityContext: context
           }],
           flagKeys: flags)
 
