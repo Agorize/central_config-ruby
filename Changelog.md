@@ -1,6 +1,6 @@
 # Changelog
 
-## HEAD
+## 0.5.1
 
 * Fixing the Flagr adapter to actually send the entityId and entityContext
 
