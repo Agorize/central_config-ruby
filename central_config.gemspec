@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'actionpack', '~> 5.2'
   spec.add_development_dependency 'bundler', '~> 2.3.17'
   spec.add_development_dependency 'capybara', '~> 3.13'
-  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rake', '~> 12'
   spec.add_development_dependency 'rspec-rails', '~> 5'
   spec.add_development_dependency 'rubocop', '~> 0.64.0'
   spec.add_development_dependency 'rubocop-rspec', '~> 1.32'
