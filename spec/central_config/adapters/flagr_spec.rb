@@ -8,19 +8,19 @@ RSpec.describe CentralConfig::Adapters::Flagr, :stub_flagr do
   describe '.new' do
     it 'expects a :config argument' do
       expect { described_class.new }
-        .to raise_exception(ArgumentError, 'missing keyword: config')
+        .to raise_error(ArgumentError, 'missing keyword: :config')
     end
   end
 
   describe '#call' do
     it 'expects an :entity_id argument' do
       expect { subject.call(config: nil, context: nil) }
-        .to raise_exception(ArgumentError, 'missing keyword: entity_id')
+        .to raise_error(ArgumentError, 'missing keyword: :entity_id')
     end
 
     it 'expects a :context argument' do
       expect { subject.call(config: nil, entity_id: nil) }
-        .to raise_exception(ArgumentError, 'missing keyword: context')
+        .to raise_error(ArgumentError, 'missing keyword: :context')
     end
 
     it 'calls the Flagr API and extracts the information' do

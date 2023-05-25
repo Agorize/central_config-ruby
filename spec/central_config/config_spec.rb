@@ -33,7 +33,7 @@ RSpec.describe CentralConfig::Config do
   describe '#flag?' do
     it 'expects a flag name' do
       error_message = 'wrong number of arguments (given 0, expected 1)'
-      expect { subject.flag? }.to raise_exception(ArgumentError, error_message)
+      expect { subject.flag? }.to raise_error(ArgumentError, error_message)
     end
 
     context "when the flag is 'on'" do
@@ -142,12 +142,12 @@ RSpec.describe CentralConfig::Config do
 
     it 'expects an :entity_id argument' do
       expect { subject.load(context: nil, flags: nil) }
-        .to raise_exception(ArgumentError, 'missing keyword: entity_id')
+        .to raise_error(ArgumentError, 'missing keyword: :entity_id')
     end
 
     it 'expects a :context argument' do
       expect { subject.load(entity_id: nil, flags: nil) }
-        .to raise_exception(ArgumentError, 'missing keyword: context')
+        .to raise_error(ArgumentError, 'missing keyword: :context')
     end
 
     it 'returns the data returned by the adapter' do
