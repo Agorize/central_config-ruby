@@ -3,7 +3,7 @@ PATH
   specs:
     central_config (0.5.2)
       activesupport (~> 5.2)
-      rbflagr (~> 1.1.12)
+      rbflagr (~> 1)
 
 GEM
   remote: https://rubygems.org/
@@ -50,9 +50,9 @@ GEM
       ffi (>= 1.15.0)
     ffi (1.15.5)
     hashdiff (1.0.1)
-    i18n (1.13.0)
+    i18n (1.14.1)
       concurrent-ruby (~> 1.0)
-    jaro_winkler (1.5.5)
+    jaro_winkler (1.5.6)
     json (2.6.3)
     loofah (2.21.3)
       crass (~> 1.0.2)
@@ -75,8 +75,9 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.5.0)
-      loofah (~> 2.19, >= 2.19.1)
+    rails-html-sanitizer (1.6.0)
+      loofah (~> 2.21)
+      nokogiri (~> 1.14)
     railties (5.2.8.1)
       actionpack (= 5.2.8.1)
       activesupport (= 5.2.8.1)

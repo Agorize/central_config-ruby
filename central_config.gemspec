@@ -31,5 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'webmock', '~> 3.5'
 
   spec.add_runtime_dependency 'activesupport', '~> 5.2'
-  spec.add_runtime_dependency 'rbflagr', '~> 1.1.12'
+  spec.add_runtime_dependency 'rbflagr', '~> 1'
 end
